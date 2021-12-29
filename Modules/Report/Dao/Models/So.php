@@ -75,6 +75,7 @@ class So extends Model
         'email' => [false => 'Company'],
         'customer_id' => [false => 'Company'],
         'order_date' => [false => 'Company'],
+        'delivery_cost' => [false => 'Company'],
         'order_status' => [true => 'Status', 'width' => 50, 'class' => 'text-center', 'status' => 'status'],
     ];
 

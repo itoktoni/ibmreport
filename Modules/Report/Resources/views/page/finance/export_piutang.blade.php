@@ -18,28 +18,29 @@
         <thead>
             <tr>
                 <th class="text-left" style="width:3%">No</th>
-                <th class="text-left" style="width:20%">Nama Me</th>
+                <th class="text-left" style="width:10%">Nama Me</th>
                 <th class="text-left" style="width:12%">No. SO</th>
                 <th class="text-left" style="width:12%">Tanggal SO</th>
                 <th class="text-left" style="width:20%">Nama Customer</th>
                 <th class="text-left" style="width:40%">Item Barang</th>
                 <th class="text-right" style="width:12%">Status</th>
                 <th class="text-right" style="width:10%">Tgl Bayar</th>
-                <th class="text-right" style="width:10%">Nominal</th>
-                <th class="text-right" style="width:10%">Pembayaran</th>
+                <th class="text-right" style="width:10%">Actual Delivery</th>
                 <th class="text-right" style="width:10%">Tagihan</th>
+                <th class="text-right" style="width:10%">Approve Amount</th>
+                <th class="text-right" style="width:10%">Piutang</th>
             </tr>
         </thead>
         <tbody>
 
         @php
-            $sum_pembayaran = $sum_outstanding = $sum_harga = 0;
+            $sum_pembayaran = $sum_outstanding = $sum_harga = $sum_tagihan = 0;
             $barang = $tgl_bayar = '';
             @endphp
             @foreach($preview as $data)
 
             @php
-            $total_pembayaran = $total_outstanding = $total_harga = 0;
+            $total_pembayaran = $total_outstanding = $total_harga = $total_tagihan = 0;
             $pembayaran = $data->has_payment ?? false;
             
             $has_detail = $data->has_detail ?? false;
@@ -57,10 +58,11 @@
                 $sum_pembayaran = $sum_pembayaran + $total_pembayaran;
                 $tgl_bayar = $pembayaran->sortBy(['payment_date' => 'desc'])->first()->payment_date ?? '';
             }
-
-            $total_outstanding = $total_pembayaran - $total_harga;
+            $total_tagihan = $total_harga + $data->delivery_cost;
+            $total_outstanding = $total_pembayaran - $total_tagihan;
             $sum_outstanding = $sum_outstanding + $total_outstanding;
             $sum_harga = $sum_harga + $total_harga;
+            $sum_tagihan = $sum_tagihan + $total_tagihan;
             @endphp
 
             <tr>
@@ -72,7 +74,8 @@
                 <td data-title="Item Barang">{!! $barang ?? '' !!} </td>
                 <td class="text-right" data-title="Status">{{ $data->order_status }} </td>
                 <td data-title="Tgl Pembayaran">{{ $tgl_bayar ?? '' }} </td>
-                <td class="text-right" data-title="Total">{{ Helper::createRupiah($total_harga) }} </td>
+                <td class="text-right" data-title="delivery">{{ Helper::createRupiah($total_harga) }} </td>
+                <td class="text-right" data-title="Tagihan">{{ Helper::createRupiah($total_tagihan) }} </td>
                 <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($total_pembayaran) }} </td>
                 <td class="text-right" data-title="Outstanding">{{ Helper::createRupiah($total_outstanding) }} </td>
             </tr>
@@ -80,7 +83,8 @@
             <tr>
                 <td class="total" data-title="" colspan="8">Grand Total</td>
                 <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($sum_harga) }}</td>
-                <td class="total text-right" data-title="Total Pembayaran">{{ Helper::createRupiah($sum_pembayaran) }}</td>
+                <td class="total text-right" data-title="Total Pembayaran">{{ Helper::createRupiah($sum_tagihan) }}</td>
+                <td class="total text-right" data-title="Total Outstanding">{{ Helper::createRupiah($sum_pembayaran) }}</td>
                 <td class="total text-right" data-title="Total Outstanding">{{ Helper::createRupiah($sum_outstanding) }}</td>
             </tr>
         </tbody>
