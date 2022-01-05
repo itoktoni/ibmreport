@@ -67,16 +67,16 @@
                 <td data-title="Nama Penjahit">{{ $data->has_supplier->mask_name ?? '' }} </td>
                 <td class="text-right" data-title="Tgl Bayar">{{ $tgl_bayar }} </td>
                 <td class="text-right" data-title="Status">{{ $data->purchase_status }} </td>
-                <td class="text-right" data-title="Total">{{ Helper::createRupiah($total_harga) }} </td>
-                <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($total_pembayaran) }} </td>
-                <td class="text-right" data-title="Outstanding">{{ Helper::createRupiah($total_outstanding) }} </td>
+                <td class="text-right" data-title="Total">{{ $total_harga }} </td>
+                <td class="text-right" data-title="Pembayaran">{{ $total_pembayaran }} </td>
+                <td class="text-right" data-title="Outstanding">{{ $total_outstanding }} </td>
             </tr>
             @endforeach
             <tr>
                 <td class="total" data-title="" colspan="5">Grand Total</td>
-                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($sum_harga) }}</td>
-                <td class="total text-right" data-title="Total Pembayaran">{{ Helper::createRupiah($sum_pembayaran) }}</td>
-                <td class="total text-right" data-title="Total Outstanding">{{ Helper::createRupiah($sum_outstanding) }}</td>
+                <td class="total text-right" data-title="Grand Total">{{ $sum_harga }}</td>
+                <td class="total text-right" data-title="Total Pembayaran">{{ $sum_pembayaran }}</td>
+                <td class="total text-right" data-title="Total Outstanding">{{ $sum_outstanding }}</td>
             </tr>
         </tbody>
     </table>

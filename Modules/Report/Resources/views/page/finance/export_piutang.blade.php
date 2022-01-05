@@ -65,6 +65,7 @@
             $sum_tagihan = $sum_tagihan + $total_tagihan;
             @endphp
 
+            @if($total_outstanding > 0)
             <tr>
                 <td data-title="No">{{ $loop->iteration }} </td>
                 <td data-title="Nama Customer">{{ $data->has_sales->mask_name ?? '' }} </td>
@@ -74,18 +75,19 @@
                 <td data-title="Item Barang">{!! $barang ?? '' !!} </td>
                 <td class="text-right" data-title="Status">{{ $data->order_status }} </td>
                 <td data-title="Tgl Pembayaran">{{ $tgl_bayar ?? '' }} </td>
-                <td class="text-right" data-title="delivery">{{ Helper::createRupiah($total_harga) }} </td>
-                <td class="text-right" data-title="Tagihan">{{ Helper::createRupiah($total_tagihan) }} </td>
-                <td class="text-right" data-title="Pembayaran">{{ Helper::createRupiah($total_pembayaran) }} </td>
-                <td class="text-right" data-title="Outstanding">{{ Helper::createRupiah($total_outstanding) }} </td>
+                <td class="text-right" data-title="delivery">{{ $total_harga }} </td>
+                <td class="text-right" data-title="Tagihan">{{ $total_tagihan }} </td>
+                <td class="text-right" data-title="Pembayaran">{{ $total_pembayaran }} </td>
+                <td class="text-right" data-title="Outstanding">{{ $total_outstanding }} </td>
             </tr>
+            @endif
             @endforeach
             <tr>
                 <td class="total" data-title="" colspan="8">Grand Total</td>
-                <td class="total text-right" data-title="Grand Total">{{ Helper::createRupiah($sum_harga) }}</td>
-                <td class="total text-right" data-title="Total Pembayaran">{{ Helper::createRupiah($sum_tagihan) }}</td>
-                <td class="total text-right" data-title="Total Outstanding">{{ Helper::createRupiah($sum_pembayaran) }}</td>
-                <td class="total text-right" data-title="Total Outstanding">{{ Helper::createRupiah($sum_outstanding) }}</td>
+                <td class="total text-right" data-title="Grand Total">{{ $sum_harga }}</td>
+                <td class="total text-right" data-title="Total Pembayaran">{{ $sum_tagihan }}</td>
+                <td class="total text-right" data-title="Total Outstanding">{{ $sum_pembayaran }}</td>
+                <td class="total text-right" data-title="Total Outstanding">{{ $sum_outstanding }}</td>
             </tr>
         </tbody>
     </table>
