@@ -65,7 +65,7 @@
             $sum_tagihan = $sum_tagihan + $total_tagihan;
             @endphp
 
-            @if($total_outstanding > 0)
+            @if($total_outstanding != 0)
             <tr>
                 <td data-title="No">{{ $loop->iteration }} </td>
                 <td data-title="Nama Customer">{{ $data->has_sales->mask_name ?? '' }} </td>
