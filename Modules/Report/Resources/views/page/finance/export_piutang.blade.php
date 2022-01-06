@@ -24,6 +24,7 @@
                 <th class="text-left" style="width:20%">Nama Customer</th>
                 <th class="text-left" style="width:40%">Item Barang</th>
                 <th class="text-right" style="width:12%">Status</th>
+                <th class="text-right" style="width:12%">COD</th>
                 <th class="text-right" style="width:10%">Tgl Bayar</th>
                 <th class="text-right" style="width:10%">Actual Delivery</th>
                 <th class="text-right" style="width:10%">Tagihan</th>
@@ -74,6 +75,7 @@
                 <td data-title="Nama Company">{{ $data->has_customer->mask_name ?? '' }} </td>
                 <td data-title="Item Barang">{!! $barang ?? '' !!} </td>
                 <td class="text-right" data-title="Status">{{ $data->order_status }} </td>
+                <td class="text-right" data-title="Status">{{ $data->cod }} </td>
                 <td data-title="Tgl Pembayaran">{{ $tgl_bayar ?? '' }} </td>
                 <td class="text-right" data-title="delivery">{{ $total_harga }} </td>
                 <td class="text-right" data-title="Tagihan">{{ $total_tagihan }} </td>
