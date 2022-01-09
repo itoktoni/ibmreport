@@ -85,7 +85,7 @@
             @endif
             @endforeach
             <tr>
-                <td class="total" data-title="" colspan="8">Grand Total</td>
+                <td class="total" data-title="" colspan="9">Grand Total</td>
                 <td class="total text-right" data-title="Grand Total">{{ $sum_harga }}</td>
                 <td class="total text-right" data-title="Total Pembayaran">{{ $sum_tagihan }}</td>
                 <td class="total text-right" data-title="Total Outstanding">{{ $sum_pembayaran }}</td>
