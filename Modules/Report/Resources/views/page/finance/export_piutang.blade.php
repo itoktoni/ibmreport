@@ -66,11 +66,11 @@
 
             @if($total_outstanding > 0)
 
+            @php
+
             $sum_outstanding = $sum_outstanding + $total_outstanding;
             $sum_harga = $sum_harga + $total_harga;
             $sum_tagihan = $sum_tagihan + $total_tagihan;
-
-            @php
 
             @endphp
             <tr>
