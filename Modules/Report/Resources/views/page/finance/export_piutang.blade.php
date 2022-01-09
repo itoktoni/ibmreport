@@ -59,14 +59,20 @@
                 $sum_pembayaran = $sum_pembayaran + $total_pembayaran;
                 $tgl_bayar = $pembayaran->sortBy(['payment_date' => 'desc'])->first()->payment_date ?? '';
             }
+           
+            @endphp
+
+            @if($total_outstanding > 0)
+
             $total_tagihan = $total_harga + $data->delivery_cost;
             $total_outstanding = $total_tagihan - $total_pembayaran;
             $sum_outstanding = $sum_outstanding + $total_outstanding;
             $sum_harga = $sum_harga + $total_harga;
             $sum_tagihan = $sum_tagihan + $total_tagihan;
-            @endphp
+            
+            @php
 
-            @if($total_outstanding > 0)
+            @endphp
             <tr>
                 <td data-title="No">{{ $loop->iteration }} </td>
                 <td data-title="Nama Customer">{{ $data->has_sales->mask_name ?? '' }} </td>
