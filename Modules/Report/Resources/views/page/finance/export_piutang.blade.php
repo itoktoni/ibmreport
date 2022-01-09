@@ -59,17 +59,17 @@
                 $sum_pembayaran = $sum_pembayaran + $total_pembayaran;
                 $tgl_bayar = $pembayaran->sortBy(['payment_date' => 'desc'])->first()->payment_date ?? '';
             }
+            $total_tagihan = $total_harga + $data->delivery_cost;
+            $total_outstanding = $total_tagihan - $total_pembayaran;
            
             @endphp
 
             @if($total_outstanding > 0)
 
-            $total_tagihan = $total_harga + $data->delivery_cost;
-            $total_outstanding = $total_tagihan - $total_pembayaran;
             $sum_outstanding = $sum_outstanding + $total_outstanding;
             $sum_harga = $sum_harga + $total_harga;
             $sum_tagihan = $sum_tagihan + $total_tagihan;
-            
+
             @php
 
             @endphp
