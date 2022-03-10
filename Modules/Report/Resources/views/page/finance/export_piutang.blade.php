@@ -71,7 +71,6 @@
             $sum_outstanding = $sum_outstanding + $total_outstanding;
             $sum_harga = $sum_harga + $total_harga;
             $sum_tagihan = $sum_tagihan + $total_tagihan;
-
         @endphp
             <tr>
                 <td data-title="No">{{ $loop->iteration }} </td>
